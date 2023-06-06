@@ -1,6 +1,6 @@
 package Java;
 
-public class UserDAO {
+public class User {
 	private String Email;
 	private String Password;
 	private String PhoneNumber;
@@ -22,12 +22,12 @@ public class UserDAO {
 	public void setPhoneNumber(String phoneNumber) {
 		PhoneNumber = phoneNumber;
 	}
-	public UserDAO(String email, String password, String phoneNumber) {
+	public User(String email, String password, String phoneNumber) {
 		Email = email;
 		Password = password;
 		PhoneNumber = phoneNumber;
 	}
-	public UserDAO() {
+	public User() {
 
 	}
 	

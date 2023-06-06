@@ -1,0 +1,35 @@
+@charset "ISO-8859-1";
+body {
+		background-image: url("https://media2.giphy.com/media/b29IZK1dP4aWs/giphy.gif");
+		background-repeat: no-repeat;
+  background-size: 100% 100%;
+	}
+
+form {
+  background-color: rgba(0, 128, 0, 0.5);
+  padding: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+.form-group label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family:sans-serif ;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.7);
+  max-width: 400px;
+  width: 100%;
+}
+
+form {
+  padding: 20px;
+}

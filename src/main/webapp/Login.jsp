@@ -1,4 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@page import="Java.*"%>
+ <%
+    User auth = (User) request.getSession().getAttribute("auth");
+    if(auth != null){
+    	response.sendRedirect("Index.js");
+    }
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +15,9 @@
 <link rel="stylesheet" type="text/css" href="css/styleLogin.css">
 </head>
 <body>
+
+	<%@include file = "includes/navbar.jsp" %>
+
 	<div class="container">
 		<div class="card w-50 mx-auto my-5">
 			<div class="card-header text-center">User Login</div>

@@ -8,9 +8,13 @@
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item"><a class="nav-link active" aria-current="page" href="Index.jsp">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="cart.jsp">Cart</a></li>
-        <li class="nav-item"><a class="nav-link" href="orders.jsp">Order</a></li>
-        <li class="nav-item"><a class="nav-link" href="Login.jsp">Logout</a></li>
-     
+        
+        <% if(auth != null){%>
+        	<li class="nav-item"><a class="nav-link" href="orders.jsp">Order</a></li>
+        	<li class="nav-item"><a class="nav-link" href="log-out">Logout</a></li>
+        <%}else{%>
+        	<li class="nav-item"><a class="nav-link" href="Login.jsp">Logout</a></li>
+        <%}%>
     </div>
   </div>
 </nav>

@@ -14,7 +14,7 @@
 			<div class="card-body">
 
 				<!-- Form dang nhap bat dau tu day -->
-				<form action="" method="post">
+				<form action="LoginServlet" method="post">
 				
 					<!-- Email -->
 					<div class="form-group mb-5">

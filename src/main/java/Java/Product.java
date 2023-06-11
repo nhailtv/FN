@@ -3,7 +3,7 @@ package Java;
 public class Product {
 	private String name;
 	private String category;
-	private String price;
+	private double price;
 	private String image;
 
 	public String getName() {
@@ -22,12 +22,12 @@ public class Product {
 		this.category = category;
 	}
 
-	public String getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
-		this.price = price;
+	public void setPrice(double d) {
+		this.price = d;
 	}
 
 	public String getImage() {
@@ -38,7 +38,7 @@ public class Product {
 		this.image = image;
 	}
 
-	public Product(String name, String category, String price, String image) {
+	public Product(String name, String category, double price, String image) {
 		this.name = name;
 		this.category = category;
 		this.price = price;

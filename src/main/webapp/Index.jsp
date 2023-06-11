@@ -1,7 +1,8 @@
+
 <%@page import="DAO.ProductDAO"%>
 <%@page import="JDBC.ConnectJDBC"%>
 <%@page import="Java.*"%>
-<%@page import="java.util.List"%>
+<%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%
@@ -13,6 +14,13 @@ if (auth != null) {
 
 ProductDAO pd= new ProductDAO(ConnectJDBC.getConnection());
 List<Product> prd = pd.getAllProducts();
+
+ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list"); 
+
+if(cart_list != null){
+	request.setAttribute("cart_list",cart_list);
+}
+
 %>
 
 <!doctype html>
@@ -49,11 +57,11 @@ List<Product> prd = pd.getAllProducts();
                             <h6 class="price">price: <%=p.getPrice() %></h6>
                             <h6 class="category">Category: <%=p.getCategory() %></h6>
                             <div class="mt-3 d-flex justify-content-between">
-                                <a href="#" class="btn btn-primary">Add to cart!</a> 
+                                <a href="add-to-cart?Name=<%= p.getName()%>" class="btn btn-dark">Add to cart!</a> 
                                 <a href="#" class="btn btn-primary">Buy now!</a>
                             </div>
                         </div>
-                    </div>
+                    </div>	
                 </div>
                 
             <% }

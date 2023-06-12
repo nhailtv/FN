@@ -1,6 +1,7 @@
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
 	<div class="container-fluid">
+		<a href="#" class="fas fa-shopping-cart" sty></a>
 		<a class="navbar-brand" href="Index.jsp">E-Shopee</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 			data-bs-target="#navbarSupportedContent"

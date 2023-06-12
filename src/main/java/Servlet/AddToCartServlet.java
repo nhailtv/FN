@@ -29,10 +29,10 @@ public class AddToCartServlet extends HttpServlet {
 		try (PrintWriter out = response.getWriter()) {
 			ArrayList<Cart> cartList = new ArrayList<>();
 
-			String ID = request.getParameter("Name");
-			System.out.println(ID);
+			String name = request.getParameter("Name");
+		
 			Cart cm = new Cart();
-			cm.setName(ID);
+			cm.setName(name);
 			cm.setQuantity(1);
 			HttpSession session = request.getSession();
 			ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
@@ -50,7 +50,7 @@ public class AddToCartServlet extends HttpServlet {
 				cartList.contains(cm);
 
 				for (Cart c : cart_list) {
-					if (c.getName().equals(ID)) {
+					if (c.getName().equals(name)) {
 						exist = true;
 						out.println(
 								"<h3 style = 'color:crimson; text-align:center'>Item exist in Cart.<a href = 'cart.jsp'>Go to Cart page</a></h3>");

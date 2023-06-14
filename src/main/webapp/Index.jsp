@@ -59,7 +59,8 @@ if (cart_list != null) {
 							<%=p.getCategory()%></h6>
 						<div class="mt-3 d-flex justify-content-between">
 							<a href="add-to-cart?Name=<%=p.getName()%>" class="btn btn-dark">Add
-								to cart!</a> <a href="#" class="btn btn-primary">Buy now!</a>
+								to cart!</a> 
+								<a href="order-now-servlet?quantity=1&Name=<%=p.getName()%>" class="btn btn-primary">Buy now!</a>
 						</div>
 					</div>
 				</div>

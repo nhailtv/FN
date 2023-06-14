@@ -87,5 +87,27 @@ public class ProductDAO {
 		
 		return sum;
 	}
+	public Product getSingleProduct(String p_ID) {
+		 Product row = null;
+		 System.out.println("productID:" + p_ID);
+		 try {
+			prst = conn.prepareStatement("select * from product where Name = ? ");
+			prst.setString(1, p_ID);
+			rs = prst.executeQuery();
+			
+			while(rs.next()) {
+				row = new Product();
+				row.setName(rs.getString(1));
+				row.setCategory(rs.getString(2));
+				row.setPrice(rs.getDouble(3));
+				row.setImage(rs.getString(4));
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return row;
+	}
 	
 }

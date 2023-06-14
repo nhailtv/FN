@@ -4,12 +4,12 @@ public class Order extends Product{
 
 	
 	private String orderName;
-	private int uid;
+	private String uid;
 	private int quantity;
 	private String date;
 	public Order() {
 	}
-	public Order(String orderName, int uid, int quantity,String date) {
+	public Order(String orderName, String uid, int quantity,String date) {
 		super();
 		this.orderName = orderName;
 		this.uid = uid;
@@ -22,11 +22,11 @@ public class Order extends Product{
 	public void setOrderName(String orderName) {
 		this.orderName = orderName;
 	}
-	public int getUid() {
+	public String getUid() {
 		return uid;
 	}
-	public void setUid(int uid) {
-		this.uid = uid;
+	public void setUid(String string) {
+		this.uid = string;
 	}
 	public int getQuantity() {
 		return quantity;

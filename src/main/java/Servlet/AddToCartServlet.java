@@ -9,8 +9,14 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+
+import DAO.ProductDAO;
+import DAO.ProductDAO.*;
 import Java.*;
+
 
 /**
  * Servlet implementation class AddToCartServlet
@@ -25,12 +31,19 @@ public class AddToCartServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
+		
+		
+		
+		
 
 		try (PrintWriter out = response.getWriter()) {
 			ArrayList<Cart> cartList = new ArrayList<>();
+			ProductDAO pd = new ProductDAO(JDBC.ConnectJDBC.getConnection());
+			List<Product> product_list = new ArrayList<Product>();
+			product_list = pd.getAllProducts();
 
 			String name = request.getParameter("Name");
-		
+
 			Cart cm = new Cart();
 			cm.setName(name);
 			cm.setQuantity(1);
@@ -38,30 +51,41 @@ public class AddToCartServlet extends HttpServlet {
 			ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
 
 			if (cart_list == null) {
-				cartList.add(cm);
-				session.setAttribute("cart-list", cartList);
-				out.println("<script type=\"text/javascript\">");
-				out.println("location='Index.jsp';");
-				out.println("</script>");
+			    for (Product product : product_list) {
+			        if (product.getName().equals(name) && product.getStock() > 0) {
+			            cartList.add(cm);
+			            session.setAttribute("cart-list", cartList);
+			            response.sendRedirect("Index.jsp");
+			            return;
+			        }
+			    }
 			} else {
-				cartList = cart_list;
-				boolean exist = false;
-
-				cartList.contains(cm);
-
-				for (Cart c : cart_list) {
-					if (c.getName().equals(name)) {
-						exist = true;
-						out.println(
-								"<h3 style = 'color:crimson; text-align:center'>Item exist in Cart.<a href = 'cart.jsp'>Go to Cart page</a></h3>");
-					}
-				}
-				if (!exist) {
-					cartList.add(cm);
-					response.sendRedirect("Index.jsp");
-					;
-				}
+			    cartList = cart_list;
+			    boolean exist = false;
+			    cartList.contains(cm);
+			    for (Cart c : cart_list) {
+			        if (c.getName().equals(name)) {
+			            exist = true;
+			            out.println("<h3 style='color:crimson; text-align:center'>Item exists in the Cart.<a href='cart.jsp'>Go to Cart page</a></h3>");
+			        }
+			    }
+			    for (Product product : product_list) {
+			        if (product.getName().equals(name) && !exist) {
+			            if (product.getStock() > 0) {
+			                cartList.add(cm);
+			                response.sendRedirect("Index.jsp");
+			            } else {
+			                out.println("<script type=\"text/javascript\">");
+			                out.println("alert('Item is out of stock.');");
+			                out.println("window.location.href = 'Index.jsp';");
+			                out.println("</script>");
+			            }
+			            break;
+			        }
+			    }
 			}
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
 	}
 

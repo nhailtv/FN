@@ -35,42 +35,68 @@ if (cart_list != null) {
 <body>
 	<!-- NavBar -->
 	<nav class="navbar navbar-expand-lg bg-body-tertiary">
-		<div class="container-fluid">
-			<a href="#" class="fas fa-shopping-cart" sty></a> <a
-				class="navbar-brand" href="Index.jsp">E-Shopee</a>
+		<div class="container">
+			<a class="navbar-brand" href="Index.jsp">
+				<img src="img/Logo.png" alt="GoodGear Logo" class="nav-logo">
+				<span class="brand-text">GoodGear</span>	
+			</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+			<div class="collapse navbar-collapse justify-content-between"
+				id="navbarSupportedContent">
+				<ul class="navbar-nav mx-auto">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="Index.jsp">Home</a></li>
+						aria-current="page" href="Index.jsp"><i class="fas fa-home"></i>
+							Home</a></li>
 					<%
 					if (auth != null) {
+						if (cart_list != null && cart_list.size() > 0) {
 					%>
-					<li class="nav-item"><a class="nav-link" href="cart.jsp">Cart
-							<%
-					if (cart_list.size() > 0) {
-					%> <span class="badge bg-danger px-1">${cart_list.size()}</span> <%
- }
- %>
+					<li class="nav-item"><a class="nav-link" href="cart.jsp">
+							<i class="fas fa-shopping-cart"></i> Cart <span
+							class="badge bg-danger px-1">${cart_list.size()}</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link" href="orders.jsp">Order</a></li>
-					<li class="nav-item"><a class="nav-link" href="log-out">Logout</a></li>
 					<%
 					} else {
 					%>
-					<li class="nav-item"><a class="nav-link" href="Login.jsp">Login</a></li>
+					<li class="nav-item"><a class="nav-link" href="cart.jsp"><i
+							class="fas fa-shopping-cart"></i> Cart</a></li>
 					<%
 					}
 					%>
-				
+					<li class="nav-item"><a class="nav-link" href="orders.jsp"><i
+							class="fas fa-clipboard-list"></i> Order</a></li>
+					<%
+					} else {
+					%>
+					<li class="nav-item"><a class="nav-link" href="Login.jsp"><i
+							class="fas fa-sign-in-alt"></i> Login</a></li>
+					<%
+					}
+					%>
+				</ul>
+				<ul class="navbar-nav">
+					<%
+					if (auth != null) {
+					%>
+					<li class="nav-item"><a class="nav-link" href="log-out"><i
+							class="fas fa-sign-out-alt"></i> Logout</a></li>
+					<%
+					}
+					%>
+				</ul>
 			</div>
 		</div>
 	</nav>
+
+
+
+
+
 
 	<div class="container">
 		<div class="card-header my-3">All Products</div>
@@ -79,7 +105,7 @@ if (cart_list != null) {
 			if (!prd.isEmpty()) {
 				for (Product p : prd) {
 			%>
-			<div class="col-md-4 col-sm-6 col-xs-12">
+			<div class="col-md-3 col-sm-6 col-xs-12">
 				<div class="card mb-4">
 					<img src="img/<%=p.getImage()%>" class="card-img-top" alt="...">
 					<div class="card-body">
@@ -92,12 +118,33 @@ if (cart_list != null) {
 						<h6 class="category">
 							Category:
 							<%=p.getCategory()%></h6>
+						<h6 class="category"
+							style="color: <%=p.getStock() > 0 ? "blue" : "red"%>">
+							<%
+							if (p.getStock() > 0) {
+							%>
+							In-Stock:
+							<%=p.getStock()%>
+							<%
+							} else {
+							%>
+							Out of Stock
+							<%
+							}
+							%>
+						</h6>
+						<%
+						if (auth != null) {
+						%>
 						<div class="mt-3 d-flex justify-content-between">
 							<a href="add-to-cart?Name=<%=p.getName()%>" class="btn btn-dark">Add
 								to cart!</a> <a
 								href="order-now-servlet?quantity=1&Name=<%=p.getName()%>"
 								class="btn btn-primary">Buy now!</a>
 						</div>
+						<%
+						}
+						%>
 					</div>
 				</div>
 			</div>
@@ -107,6 +154,35 @@ if (cart_list != null) {
 			%>
 		</div>
 	</div>
+	<footer class="footer bg-dark text-white py-5">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<h5>WEB-Maker:</h5>
+					<ul class="list-unstyled">
+						<li>Thai Ba Bau</li>
+						<li>Nguyen Hong Nguyen Hai</li>
+					</ul>
+				</div>
+				<div class="col">
+					<h5>WEB-Language:</h5>
+					<ul class="list-unstyled">
+						<li>Java</li>
+						<li>HTML</li>
+						<li>CSS</li>
+					</ul>
+				</div>
+				<div class="col">
+					<h5>Contact:</h5>
+					<ul class="list-unstyled">
+						<li>Mail: hainhn.22it@vku.udn.vn</li>
+						<li>Phone: 84-777-543-918</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
 
 	<%@include file="includes/Footer.jsp"%>
 </body>

@@ -25,6 +25,7 @@ public class ProductDAO {
 				row.setCategory(rs.getString(2));
 				row.setPrice(rs.getDouble(3));
 				row.setImage(rs.getString(4));
+				row.setStock(rs.getInt(5));
 				products.add(row);
 				
 			}
@@ -101,6 +102,7 @@ public class ProductDAO {
 				row.setCategory(rs.getString(2));
 				row.setPrice(rs.getDouble(3));
 				row.setImage(rs.getString(4));
+				row.setStock(rs.getInt(5));
 			}
 			
 			

@@ -26,6 +26,7 @@ if (cart_list != null) {
 <html>
 <head>
 <%@include file="includes/Head.jsp"%>
+
 <style type="text/css">
 .table tbody td {
 	vartical-align: middle;
@@ -36,41 +37,65 @@ if (cart_list != null) {
 </head>
 <body>
 <!-- NavBar -->
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-	<div class="container-fluid">
-		<a href="#" class="fas fa-shopping-cart" sty></a>
-		<a class="navbar-brand" href="Index.jsp">E-Shopee</a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-			data-bs-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-				<li class="nav-item"><a class="nav-link"
-					aria-current="page" href="Index.jsp">Home</a></li>
-				<%
-				if (auth != null) {
-				%>
-				<li class="nav-item"><a class="nav-link active" href="cart.jsp">Cart
-					<% if (cart_list.size() > 0) { %>
-						<span class="badge bg-danger px-1">${cart_list.size()}</span>
-					<% } %>
-				</a></li>
-				<li class="nav-item"><a class="nav-link" href="orders.jsp">Order</a></li>
-				<li class="nav-item"><a class="nav-link" href="log-out">Logout</a></li>
-				<%
-				} else {
-				%>
-				<li class="nav-item"><a class="nav-link" href="Login.jsp">Login</a></li>
-				<%
-				}
-				%>
-			
+	<nav class="navbar navbar-expand-lg bg-body-tertiary">
+		<div class="container">
+			<a class="navbar-brand" href="Index.jsp">
+				<img src="img/Logo.png" alt="GoodGear Logo" class="nav-logo">
+				<span class="brand-text">GoodGear</span>	
+			</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse justify-content-between"
+				id="navbarSupportedContent">
+				<ul class="navbar-nav mx-auto">
+					<li class="nav-item"><a class="nav-link"
+						aria-current="page" href="Index.jsp"><i class="fas fa-home"></i>
+							Home</a></li>
+					<%
+					if (auth != null) {
+						if (cart_list != null && cart_list.size() > 0) {
+					%>
+					<li class="nav-item"><a class="nav-link active" href="cart.jsp">
+							<i class="fas fa-shopping-cart"></i> Cart <span
+							class="badge bg-danger px-1">${cart_list.size()}</span>
+					</a></li>
+					<%
+					} else {
+					%>
+					<li class="nav-item"><a class="nav-link" href="cart.jsp"><i
+							class="fas fa-shopping-cart"></i> Cart</a></li>
+					<%
+					}
+					%>
+					<li class="nav-item"><a class="nav-link" href="orders.jsp"><i
+							class="fas fa-clipboard-list"></i> Order</a></li>
+					<%
+					} else {
+					%>
+					<li class="nav-item"><a class="nav-link" href="Login.jsp"><i
+							class="fas fa-sign-in-alt"></i> Login</a></li>
+					<%
+					}
+					%>
+				</ul>
+				<ul class="navbar-nav">
+					<%
+					if (auth != null) {
+					%>
+					<li class="nav-item"><a class="nav-link" href="log-out"><i
+							class="fas fa-sign-out-alt"></i> Logout</a></li>
+					<%
+					}
+					%>
+				</ul>
+			</div>
 		</div>
-	</div>
-</nav>
+	</nav>
+
 
 	<div class="container">
 		<div class="d-flex py-3 ">
@@ -133,6 +158,7 @@ if (cart_list != null) {
 			</tbody>
 		</table>
 	</div>
+
 
 	<%@include file="includes/Footer.jsp"%>
 </body>

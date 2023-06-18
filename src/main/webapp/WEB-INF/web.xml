@@ -99,4 +99,14 @@
     <servlet-name>CancelOrderServlet</servlet-name>
     <url-pattern>/cancel-order-servlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SearchServlet</display-name>
+    <servlet-name>SearchServlet</servlet-name>
+    <servlet-class>Servlet.SearchServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SearchServlet</servlet-name>
+    <url-pattern>/search-servlet</url-pattern>
+  </servlet-mapping>
 </web-app>

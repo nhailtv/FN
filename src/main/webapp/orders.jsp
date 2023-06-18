@@ -92,41 +92,34 @@ if (cart_list != null) {
 	</nav>
 
 
-	<div class="container">
-		<div class="card-header my-3">All Orders</div>
-		<table class="table table-light">
-			<thread>
-			<tr>
-				<th scope="col">Date</th>
-				<th scope="col">Name</th>
-				<th scope="col">Category</th>
-				<th scope="col">Quantity</th>
-				<th scope="col">Price</th>
-				<th scope="col">Cancel</th>
-			</tr>
-			</thread>
-			<tbody>
-				<%
-				if (orders != null) {
-					for (Order o : orders) {
-				%>
-				<td><%=o.getDate()%></td>
-				<td><%=o.getOrderName()%></td>
-				<td><%=o.getCategory()%></td>
-				<td><%=o.getQuantity()%></td>
-				<td><%=dcf.format(o.getPrice())%></td>
-				<td><a class="btn btn-sm btn-danger"
-					href="cancel-order-servlet?Name=<%=o.getOrderName()%>">Cancel</a>
-				</tr>
-				<%
-				}
-				} else {
-				System.out.print("null orders");
-				}
-				%>
-			</tbody>
-		</table>
+<div class="container">
+	<div class="card-header my-3">All Orders</div>
+	<div class="row">
+		<%
+		if (orders != null) {
+			for (Order o : orders) {
+		%>
+		<div class="col-md-4">
+			<div class="card mb-3">
+				<div class="card-body">
+					<h5 class="card-title"><%=o.getOrderName()%></h5>
+					<p class="card-text">Date: <%=o.getDate()%></p>
+					<p class="card-text">Category: <%=o.getCategory()%></p>
+					<p class="card-text">Quantity: <%=o.getQuantity()%></p>
+					<p class="card-text">Price: <%=dcf.format(o.getPrice())%></p>
+					<a class="btn btn-sm btn-danger" href="cancel-order-servlet?Name=<%=o.getOrderName()%>">Cancel</a>
+				</div>
+			</div>
+		</div>
+		<%
+		}
+		} else {
+		System.out.print("null orders");
+		}
+		%>
 	</div>
+</div>
+
 
 
 	<%@include file="includes/Footer.jsp"%>

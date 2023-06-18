@@ -111,5 +111,43 @@ public class ProductDAO {
 		}
 		return row;
 	}
-	
+    public List<Product> searchProducts(String searchTerm) {
+        List<Product> products = new ArrayList<Product>();
+        try {
+            prst = conn.prepareStatement("SELECT * FROM product WHERE Name LIKE ?");
+            prst.setString(1, "%" + searchTerm + "%");
+            rs = prst.executeQuery();
+            while (rs.next()) {
+                Product row = new Product();
+                row.setName(rs.getString(1));
+                row.setCategory(rs.getString(2));
+                row.setPrice(rs.getDouble(3));
+                row.setImage(rs.getString(4));
+                row.setStock(rs.getInt(5));
+                products.add(row);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
+    public Product getProductByName(String productName) {
+        Product product = null;
+        try {
+            prst = conn.prepareStatement("SELECT * FROM product WHERE Name = ?");
+            prst.setString(1, productName);
+            rs = prst.executeQuery();
+            if (rs.next()) {
+                product = new Product();
+                product.setName(rs.getString(1));
+                product.setCategory(rs.getString(2));
+                product.setPrice(rs.getDouble(3));
+                product.setImage(rs.getString(4));
+                product.setStock(rs.getInt(5));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return product;
+    }
 }

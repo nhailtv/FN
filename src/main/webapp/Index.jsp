@@ -36,9 +36,8 @@ if (cart_list != null) {
 	<!-- NavBar -->
 	<nav class="navbar navbar-expand-lg bg-body-tertiary">
 		<div class="container">
-			<a class="navbar-brand" href="Index.jsp">
-				<img src="img/Logo.png" alt="GoodGear Logo" class="nav-logo">
-				<span class="brand-text">GoodGear</span>	
+			<a class="navbar-brand" href="Index.jsp"> <img src="img/Logo.png"
+				alt="GoodGear Logo" class="nav-logo"> <span class="brand-text">GoodGear</span>
 			</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -94,66 +93,101 @@ if (cart_list != null) {
 	</nav>
 
 
-
-
-
-
 	<div class="container">
-		<div class="card-header my-3">All Products</div>
-		<div class="row">
-			<%
-			if (!prd.isEmpty()) {
-				for (Product p : prd) {
-			%>
-			<div class="col-md-3 col-sm-6 col-xs-12">
-				<div class="card mb-4">
-					<img src="img/<%=p.getImage()%>" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">
-							Name:
-							<%=p.getName()%></h5>
-						<h6 class="price">
-							price:
-							<%=p.getPrice()%></h6>
-						<h6 class="category">
-							Category:
-							<%=p.getCategory()%></h6>
-						<h6 class="category"
-							style="color: <%=p.getStock() > 0 ? "blue" : "red"%>">
-							<%
-							if (p.getStock() > 0) {
-							%>
-							In-Stock:
-							<%=p.getStock()%>
-							<%
-							} else {
-							%>
-							Out of Stock
-							<%
-							}
-							%>
-						</h6>
-						<%
-						if (auth != null) {
-						%>
-						<div class="mt-3 d-flex justify-content-between">
-							<a href="add-to-cart?Name=<%=p.getName()%>" class="btn btn-dark">Add
-								to cart!</a> <a
-								href="order-now-servlet?quantity=1&Name=<%=p.getName()%>"
-								class="btn btn-primary">Buy now!</a>
-						</div>
-						<%
-						}
-						%>
-					</div>
-				</div>
+		<form action="search-servlet" method="get" class="my-3">
+			<div class="input-group">
+				<input type="text" name="search" class="form-control"
+					placeholder="Search products...">
+				<button class="btn btn-primary" type="submit">
+					<i class="fas fa-search"></i>
+				</button>
 			</div>
-			<%
-			}
-			}
-			%>
-		</div>
+		</form>
 	</div>
+
+
+<div class="container">
+    <div class="card-header my-3">All Products</div>
+    <div class="row">
+        <%
+        if (!prd.isEmpty()) {
+            List<Product> inStockProducts = new ArrayList<>();
+            List<Product> outOfStockProducts = new ArrayList<>();
+
+            for (Product p : prd) {
+                if (p.getStock() > 0) {
+                    inStockProducts.add(p);
+                } else {
+                    outOfStockProducts.add(p);
+                }
+            }
+
+            for (Product p : inStockProducts) {
+        %>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="card mb-4">
+                <img src="img/<%=p.getImage()%>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Name:
+                        <%=p.getName()%>
+                    </h5>
+                    <h6 class="category">
+                        Category:
+                        <%=p.getCategory()%>
+                    </h6>
+                    <h6 class="category" style="color: blue;">
+                        <h6 class="price">
+                            Price: <span class="text-success rounded px-2 fs-5">$<%=p.getPrice()%></span>
+                        </h6>
+                        <h6 class="text-primary">
+                            In-Stock:
+                            <%=p.getStock()%>
+                        </h6>
+                        <%
+                        if (auth != null) {
+                        %>
+                        <div class="mt-3 d-flex justify-content-between">
+                            <a href="add-to-cart?Name=<%=p.getName()%>" class="btn btn-dark">Add to cart!</a>
+                            <a href="order-now-servlet?quantity=1&Name=<%=p.getName()%>" class="btn btn-primary">Buy now!</a>
+                        </div>
+                        <%
+                        }
+                        %>
+                    </h6>
+                </div>
+            </div>
+        </div>
+        <%
+            }
+            for (Product p : outOfStockProducts) {
+        %>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="card mb-4">
+                <img src="img/<%=p.getImage()%>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Name:
+                        <%=p.getName()%>
+                    </h5>
+                    <h6 class="category">
+                        Category:
+                        <%=p.getCategory()%>
+                    </h6>
+                    <h6 class="category" style="color: red;">
+                        Out of Stock
+                    </h6>
+                </div>
+            </div>
+        </div>
+        <%
+            }
+        }
+        %>
+    </div>
+</div>
+
+
 	<footer class="footer bg-dark text-white py-5">
 		<div class="container">
 			<div class="row">

@@ -109,4 +109,24 @@
     <servlet-name>SearchServlet</servlet-name>
     <url-pattern>/search-servlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RegisterServlet</display-name>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>Servlet.RegisterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/register-servlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SortByCagetoryServlet</display-name>
+    <servlet-name>SortByCagetoryServlet</servlet-name>
+    <servlet-class>Servlet.SortByCagetoryServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SortByCagetoryServlet</servlet-name>
+    <url-pattern>/sort-by-cagetory-servlet</url-pattern>
+  </servlet-mapping>
 </web-app>

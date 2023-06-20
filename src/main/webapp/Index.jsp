@@ -103,11 +103,17 @@ if (cart_list != null) {
 				</button>
 			</div>
 		</form>
-	</div>
+		<div class="float-end">
+            <button class="btn btn-primary" onclick="sortProductsByCategory()">Sort by Category</button>
+        </div>
+    </div>
+
 
 
 <div class="container">
     <div class="card-header my-3">All Products</div>
+      
+    
     <div class="row">
         <%
         if (!prd.isEmpty()) {
@@ -188,6 +194,7 @@ if (cart_list != null) {
 </div>
 
 
+
 	<footer class="footer bg-dark text-white py-5">
 		<div class="container">
 			<div class="row">
@@ -217,7 +224,23 @@ if (cart_list != null) {
 		</div>
 	</footer>
 
-
+<script>
+    function sortProductsByCategory() {
+        // Send an AJAX request to the server to get sorted products
+        $.ajax({
+            url: 'sort-by-category-servlet',
+            method: 'GET',
+            success: function (response) {
+                // Replace the existing product cards with the sorted products
+                $('#product-container').html(response);
+            },
+            error: function (xhr, status, error) {
+                // Handle error if any
+                console.error(error);
+            }
+        });
+    }
+</script>
 	<%@include file="includes/Footer.jsp"%>
 </body>
 </html>

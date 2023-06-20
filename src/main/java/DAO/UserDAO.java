@@ -40,5 +40,42 @@ public class UserDAO {
 		
 	}
 	
+	public String registerUser(String email, String password, String phoneNumber, String address) {
+	    try {
+	        String query = "SELECT COUNT(*) FROM user WHERE email = ? OR phoneNumber = ?";
+	        PreparedStatement stmt = conn.prepareStatement(query);
+	        stmt.setString(1, email);
+	        stmt.setString(2, phoneNumber);
+	        ResultSet rs = stmt.executeQuery();
+	        rs.next();
+	        int count = rs.getInt(1);
+	        rs.close();
+	        
+	        if (count > 0) {
+	            // Email or phone number already exists
+	            return "Email or Phone number are exist";
+	        } else {
+	            query = "INSERT INTO user (email, password, phoneNumber, address) VALUES (?, ?, ?, ?)";
+	            stmt = conn.prepareStatement(query);
+	            stmt.setString(1, email);
+	            stmt.setString(2, password);
+	            stmt.setString(3, phoneNumber);
+	            stmt.setString(4, address);
+
+	            int rowsAffected = stmt.executeUpdate();
+	            if(rowsAffected > 0) {
+	            	return null;
+	            }else {
+	            	return "Something went Wrong , please try again";
+	            }
+	           
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return "Something went Wrong , please try again";
+	    }
+	}
+
+	
 	
 }

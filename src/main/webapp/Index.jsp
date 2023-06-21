@@ -23,6 +23,10 @@ if (cart_list != null) {
 <!doctype html>
 <html lang="en">
 <head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <%@include file="includes/Head.jsp"%>
 <title>Index</title>
 <style>
@@ -30,9 +34,42 @@ if (cart_list != null) {
 	height: 300px;
 	object-fit: cover;
 }
+.input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 50%;
+     margin: 0 auto;
+}
+
+  /* Make the image fully responsive */
+  .carousel-inner img {
+    width: 100%;
+    height: 100%;
+  }
+  
+
 </style>
 </head>
 <body>
+<script>
+    // Get the current scroll position
+    var scrollPos = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+
+    // Store the scroll position in a hidden input field
+    document.getElementById("scrollPosInput").value = scrollPos;
+
+    // Restore the scroll position after page reloads
+    window.onload = function() {
+        var storedScrollPos = document.getElementById("scrollPosInput").value;
+        window.scrollTo(0, storedScrollPos);
+    };
+</script>
+
+<input type="hidden" id="scrollPosInput" name="scrollPos" />
+
+
 	<!-- NavBar -->
 	<nav class="navbar navbar-expand-lg bg-body-tertiary">
 		<div class="container">
@@ -91,21 +128,63 @@ if (cart_list != null) {
 			</div>
 		</div>
 	</nav>
+	
+	<div class="container ">
+		 	<div class="alert alert-success text-center mt-4"> <strong>We have update many keyboards with good price! The picture below is products that will arrived soon.</strong></div>
+		       </div>
+	
+	
+<div id="demo" class="carousel slide" data-ride="carousel" style="padding-top:50px ">
 
-
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active bg-dark"></li>
+    <li data-target="#demo" data-slide-to="1" class="bg-dark"></li>
+    <li data-target="#demo" data-slide-to="2" class="bg-dark"></li>
+    <li data-target="#demo" data-slide-to="3" class="bg-dark"></li>
+    
+  </ul>
+  
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="img/Dyno75-V2.png" alt="PC" style="margin:auto;width:20%;heigt:25%;display:flex;" >
+    </div>
+    <div class="carousel-item">
+      <img src="img/c2.jpg" alt="PC"  style="margin:auto;width:15%;heigt:25%;display:flex;">
+    </div>
+    <div class="carousel-item">
+      <img src="img/c3.jpg" alt="PC"  style="margin:auto;width:13%;heigt:15%;display:flex;">
+    </div>
+    <div class="carousel-item">
+      <img src="img/c4.jpg" alt="PC"  style="margin:auto;width:15%;heigt:15%;display:flex;">
+    </div>
+     
+  
+  </div>
+  
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon bg-dark"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon bg-dark"></span>
+  </a>
+</div>
+	
+	
+	
 	<div class="container">
 		<form action="search-servlet" method="get" class="my-3">
 			<div class="input-group">
 				<input type="text" name="search" class="form-control"
-					placeholder="Search products...">
+					placeholder="Search" style="width: 50%">
 				<button class="btn btn-primary" type="submit">
 					<i class="fas fa-search"></i>
 				</button>
 			</div>
 		</form>
-		<div class="float-end">
-            <button class="btn btn-primary" onclick="sortProductsByCategory()">Sort by Category</button>
-        </div>
+		<a href="SortedProduct.jsp" class="btn btn-outline-info">Display by category!</a>
     </div>
 
 
@@ -195,7 +274,11 @@ if (cart_list != null) {
 
 
 
-	<footer class="footer bg-dark text-white py-5">
+	<footer class="footer bg-dark text-white py-5 text-center text-white mt-4">
+		<div class="container">
+		 	<div class="alert alert-success"> <strong>NEW PRODUCTS ARRIVED SOON! SEE YOU AT OUR EVENT!</strong><pre> Make sure you don't miss this! <a href="#" style="text-decoration:none">Join now !</a></pre></div>
+		       </div>
+		
 		<div class="container">
 			<div class="row">
 				<div class="col">
@@ -214,33 +297,14 @@ if (cart_list != null) {
 					</ul>
 				</div>
 				<div class="col">
-					<h5>Contact:</h5>
-					<ul class="list-unstyled">
-						<li>Mail: hainhn.22it@vku.udn.vn</li>
-						<li>Phone: 84-777-543-918</li>
-					</ul>
+					<a href="aboutUS.jsp" style="text-decoration: none;" class="button"><h4>Contact us !</h4><a>
+					
 				</div>
 			</div>
 		</div>
 	</footer>
 
-<script>
-    function sortProductsByCategory() {
-        // Send an AJAX request to the server to get sorted products
-        $.ajax({
-            url: 'sort-by-category-servlet',
-            method: 'GET',
-            success: function (response) {
-                // Replace the existing product cards with the sorted products
-                $('#product-container').html(response);
-            },
-            error: function (xhr, status, error) {
-                // Handle error if any
-                console.error(error);
-            }
-        });
-    }
-</script>
+
 	<%@include file="includes/Footer.jsp"%>
 </body>
 </html>

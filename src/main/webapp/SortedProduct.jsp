@@ -11,15 +11,9 @@ if (auth != null) {
 }
 
 ProductDAO pd = new ProductDAO(ConnectJDBC.getConnection());
-List<Product> prd;
-ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
+List<Product> prd = pd.getAllProducts();
 
-String searchTerm = request.getParameter("search");
-if (searchTerm != null && !searchTerm.trim().isEmpty()) {
-	prd = pd.searchProducts(searchTerm);
-} else {
-	prd = pd.getAllProducts();
-}
+ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
 
 if (cart_list != null) {
 	request.setAttribute("cart_list", cart_list);
@@ -35,6 +29,14 @@ if (cart_list != null) {
 .card-img-top {
 	height: 300px;
 	object-fit: cover;
+}
+.input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 50%;
+     margin: 0 auto;
 }
 </style>
 </head>
@@ -59,9 +61,7 @@ if (cart_list != null) {
 							Home</a></li>
 					<%
 					if (auth != null) {
-					%>
-					<%
-					if (cart_list != null && cart_list.size() > 0) {
+						if (cart_list != null && cart_list.size() > 0) {
 					%>
 					<li class="nav-item"><a class="nav-link" href="cart.jsp">
 							<i class="fas fa-shopping-cart"></i> Cart <span
@@ -100,7 +100,7 @@ if (cart_list != null) {
 		</div>
 	</nav>
 
-	<!-- ... -->
+
 <div class="container">
 		<form action="search-servlet" method="get" class="my-3">
 			<div class="input-group">
@@ -113,77 +113,121 @@ if (cart_list != null) {
 		</form>
     </div>
 
+
+
+
 	<div class="container">
 		<div class="card-header my-3">All Products</div>
+
+		<%
+		// Create a map to store products by category
+		Map<String, List<Product>> productsByCategory = new HashMap<>();
+
+		// Iterate over all products and group them by category
+		for (Product p : prd) {
+			String category = p.getCategory();
+			if (!productsByCategory.containsKey(category)) {
+				productsByCategory.put(category, new ArrayList<>());
+			}
+			productsByCategory.get(category).add(p);
+		}
+
+		// Iterate over the products by category and display them
+		for (Map.Entry<String, List<Product>> entry : productsByCategory.entrySet()) {
+			String category = entry.getKey();
+			List<Product> products = entry.getValue();
+		%>
+		<h3 class="mt-4"><%=category%></h3>
 		<div class="row">
 			<%
-			if (!prd.isEmpty()) {
-				for (Product p : prd) {
+			for (Product p : products) {
 			%>
 			<div class="col-md-3 col-sm-6 col-xs-12">
 				<div class="card mb-4">
-					<img src="img/<%=p.getImage()%>" class="card-img-top"
-						alt="Product Image">
+					<img src="img/<%=p.getImage()%>" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">
-							Name:<%=p.getName()%></h5>
-						<h6 class="cagetory">
-							Cagetory:<%=p.getCategory()%></h6>
-
-
-						<%
-						if (p.getStock() > 0) {
-						%>
-						<h6 class="price">
-							price: <span class="text-success rounded px-2 fs-5">$<%=p.getPrice()%></span>
+							Name:
+							<%=p.getName()%>
+						</h5>
+						<h6 class="category">
+							Category:
+							<%=p.getCategory()%>
 						</h6>
-
-						<p class="card-text text-success">
+						<h6 class="category" style="color: blue;">
+							<h6 class="price">
+								Price: <span class="text-success rounded px-2 fs-5">$<%=p.getPrice()%></span>
+							</h6>
+							<%
+							if (p.getStock() > 0) {
+							%>
 							<h6 class="text-primary">
 								In-Stock:
 								<%=p.getStock()%>
 							</h6>
-						<%
-						} else {
-						%>
-						<p class="card-text text-danger">Out of Stock</p>
-						<%
-						}
-						%>
-						<%
-						if (auth != null) {
-						%>
-						<div class="mt-3 d-flex justify-content-between">
-							<a href="add-to-cart?Name=<%=p.getName()%>" class="btn btn-dark">Add
-								to Cart</a> <a
-								href="order-now-servlet?quantity=1&Name=<%=p.getName()%>"
-								class="btn btn-primary">Buy Now</a>
-						</div>
-						<%
-						}
-						%>
+							<%
+							if (auth != null) {
+							%>
+							<div class="mt-3 d-flex justify-content-between">
+								<a href="add-to-cart?Name=<%=p.getName()%>" class="btn btn-dark">Add
+									to cart!</a> <a
+									href="order-now-servlet?quantity=1&Name=<%=p.getName()%>"
+									class="btn btn-primary">Buy now!</a>
+							</div>
+							<%
+							}
+							%>
+							<%
+							} else {
+							%>
+							<h6 class="category" style="color: red;">Out of Stock</h6>
+							<%
+							}
+							%>
+							
+						</h6>
 					</div>
 				</div>
 			</div>
 			<%
 			}
-			} else {
-			%>
-			<div class="col">
-				<p>No products found.</p>
-			</div>
-			<%
-			}
 			%>
 		</div>
+		<%
+		}
+		%>
 	</div>
 
-	<!-- ... -->
+
 
 	<footer class="footer bg-dark text-white py-5">
-		<!-- Footer content -->
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<h5>WEB-Maker:</h5>
+					<ul class="list-unstyled">
+						<li>Thai Ba Bau</li>
+						<li>Nguyen Hong Nguyen Hai</li>
+					</ul>
+				</div>
+				<div class="col">
+					<h5>WEB-Language:</h5>
+					<ul class="list-unstyled">
+						<li>Java</li>
+						<li>HTML</li>
+						<li>CSS</li>
+					</ul>
+				</div>
+				<div class="col">
+					<h5>Contact:</h5>
+					<ul class="list-unstyled">
+						<li>Mail: hainhn.22it@vku.udn.vn</li>
+						<li>Phone: 84-777-543-918</li>
+					</ul>
+				</div>
+			</div>
+		</div>
 	</footer>
-
 
 
 	<%@include file="includes/Footer.jsp"%>

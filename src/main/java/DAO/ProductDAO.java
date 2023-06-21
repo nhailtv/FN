@@ -150,4 +150,49 @@ public class ProductDAO {
         }
         return product;
     }
+    public boolean updateProduct(Product product) {
+        try {
+            prst = conn.prepareStatement("UPDATE product SET Category=?, Price=?, Image=?, Stock=? WHERE Name=?");
+            prst.setString(1, product.getCategory());
+            prst.setDouble(2, product.getPrice());
+            prst.setString(3, product.getImage());
+            prst.setInt(4, product.getStock());
+            prst.setString(5, product.getName());
+
+            int rowsAffected = prst.executeUpdate();
+            return rowsAffected > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public boolean addProduct(Product product) {
+        try {
+            prst = conn.prepareStatement("INSERT INTO product (Name, Category, Price, Image, Stock) VALUES (?, ?, ?, ?, ?)");
+            prst.setString(1, product.getName());
+            prst.setString(2, product.getCategory());
+            prst.setDouble(3, product.getPrice());
+            prst.setString(4, product.getImage());
+            prst.setInt(5, product.getStock());
+
+            int rowsAffected = prst.executeUpdate();
+            return rowsAffected > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public boolean deleteProduct(String productName) {
+        try {
+            prst = conn.prepareStatement("DELETE FROM product WHERE Name=?");
+            prst.setString(1, productName);
+
+            int rowsAffected = prst.executeUpdate();
+            return rowsAffected > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

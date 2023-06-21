@@ -55,7 +55,11 @@ public class AddToCartServlet extends HttpServlet {
 			        if (product.getName().equals(name) && product.getStock() > 0) {
 			            cartList.add(cm);
 			            session.setAttribute("cart-list", cartList);
-			            response.sendRedirect("Index.jsp");
+		                int scrollPos = request.getParameter("scrollPos") != null ? Integer.parseInt(request.getParameter("scrollPos")) : 0;
+		                session.setAttribute("scrollPos", scrollPos);
+		                response.sendRedirect("Index.jsp#product-section");
+
+
 			            return;
 			        }
 			    }
@@ -73,7 +77,9 @@ public class AddToCartServlet extends HttpServlet {
 			        if (product.getName().equals(name) && !exist) {
 			            if (product.getStock() > 0) {
 			                cartList.add(cm);
-			                response.sendRedirect("Index.jsp");
+			                int scrollPos = request.getParameter("scrollPos") != null ? Integer.parseInt(request.getParameter("scrollPos")) : 0;
+			                session.setAttribute("scrollPos", scrollPos);
+			                response.sendRedirect("Index.jsp#product-section");
 			            } else {
 			                out.println("<script type=\"text/javascript\">");
 			                out.println("alert('Item is out of stock.');");

@@ -29,7 +29,7 @@ CREATE TABLE `orders` (
   `o_quantity` int NOT NULL,
   `o_date` varchar(255) NOT NULL,
   PRIMARY KEY (`o_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,7 +53,9 @@ CREATE TABLE `product` (
   `Category` varchar(255) NOT NULL,
   `Price` varchar(45) NOT NULL,
   `Image` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`Name`)
+  `stock` int DEFAULT NULL,
+  PRIMARY KEY (`Name`),
+  CONSTRAINT `check_stock_positive` CHECK ((`stock` >= 0))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -63,7 +65,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES ('Dyno75-V2','75%','2300','Dyno75-V2.png'),('FINALKEY-V81-PLUS','TKL','1500','FINALKEY-V81-PLUS.png'),('Kyukon80','80%','2500','Kyukon80.png'),('LMK67','67%','800','LMK67.png'),('Mongeek-M1W','75%','1000','Mongeek-M1W.png'),('StormTrooper','60%','500','StormTrooper.png');
+INSERT INTO `product` VALUES ('Dyno75-V2','75%','2300.0','Dyno75-V2.png',13),('FINALKEY-V81-PLUS','TKL','1500.0','FINALKEY-V81-PLUS.png',13),('Kyukon80','TKL','2500','Kyukon80.png',1),('LMK67','60%','800.0','LMK67.png',1),('Mongeek-M1W','75%','1000','Mongeek-M1W.png',2),('StormTrooper','60%','500','StormTrooper.png',0),('Wow','Wow','10000.0','Wow-gif.gif',10);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -78,6 +80,7 @@ CREATE TABLE `user` (
   `Email` varchar(255) NOT NULL,
   `Password` varchar(255) NOT NULL,
   `PhoneNumber` varchar(20) NOT NULL,
+  `Address` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`Email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -88,7 +91,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('1@1','123','123'),('test@gmail.com','123123','123123');
+INSERT INTO `user` VALUES ('1@1','123','123','216 NCT'),('2@2','123','0222356587','217 NCT'),('test@gmail.com','123123','123123','215 NCT');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -101,4 +104,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-14 21:43:56
+-- Dump completed on 2023-06-21  9:59:45

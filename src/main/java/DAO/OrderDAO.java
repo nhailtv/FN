@@ -66,15 +66,58 @@ public class OrderDAO {
 		return order_list;
 	}
 	
-	public void cancelOrder(String Name) {
-		try {
-			prst = conn.prepareStatement("delete from orders where p_id=?");
-			prst.setString(1, Name);
-			prst.execute();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public boolean cancelOrder(String Name) {
+	    try {
+	        prst = conn.prepareStatement("DELETE FROM orders WHERE p_id = ?");
+	        prst.setString(1, Name);
+	        int rowsAffected = prst.executeUpdate();
+	        return rowsAffected > 0;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return false;
+	    }
 	}
-	
+	public boolean updateOrder(Order order) {
+	    boolean result = false;
+
+	    try {
+	        PreparedStatement prst = conn.prepareStatement("UPDATE orders SET o_quantity=?, o_date=? WHERE p_id=? AND u_id=?");
+	        prst.setInt(1, order.getQuantity());
+	        prst.setString(2, order.getDate());
+	        prst.setString(3, order.getOrderName());
+	        prst.setString(4, order.getUid());
+	        prst.executeUpdate();
+	        result = true;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return result;
+	}
+	public List<Order> getAllOrders() {
+	    List<Order> orderList = new ArrayList<>();
+
+	    try {
+	        PreparedStatement prst = conn.prepareStatement("SELECT * FROM orders");
+	        ResultSet rs = prst.executeQuery();
+
+	        while (rs.next()) {
+	            Order order = new Order();
+	            order.setOrderName(rs.getString("p_id"));
+	            order.setUid(rs.getString("u_id"));
+	            order.setQuantity(rs.getInt("o_quantity"));
+	            order.setDate(rs.getString("o_date"));
+	            orderList.add(order);
+	        }
+
+	        rs.close();
+	        prst.close();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+
+	    return orderList;
+	}
+
 	
 }

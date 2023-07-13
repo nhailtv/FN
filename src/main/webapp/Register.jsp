@@ -19,7 +19,7 @@ if (cart_list != null) {
     <meta charset="ISO-8859-1">
     <%@include file="includes/Head.jsp"%>
     <title>Register</title>
-    <link rel="stylesheet" type="text/css" href="css/stylesRegister.css">
+    <link rel="stylesheet" type="text/css" href="css/stylesLogin.css">
 </head>
 <body>
 
@@ -81,7 +81,6 @@ if (cart_list != null) {
 			</div>
 		</div>
 	</nav>
-      <h1>Registration</h1>
     <% 
     String notice = (String) request.getAttribute("notice");
     if (notice != null) {

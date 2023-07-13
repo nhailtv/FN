@@ -148,16 +148,16 @@ if (cart_list != null) {
   <!-- The slideshow -->
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="img/sp_03.jpg" alt="PC" style="margin:auto;width:50%;heigt:50%;display:flex;" >
+      <img src="img/sp_03.jpg" alt="PC" style="margin:auto;width:50%;height:50%;display:flex;" >
     </div>
     <div class="carousel-item">
-      <img src="img/sp_02.jpg" alt="PC"  style="margin:auto;width:50%;heigt:50%;display:flex;">
+      <img src="img/sp_02.jpg" alt="PC"  style="margin:auto;width:50%;height:50%;display:flex;">
     </div>
     <div class="carousel-item">
-      <img src="img/sp_01.jpg" alt="PC"  style="margin:auto;width:50%;heigt:50%;display:flex;">
+      <img src="img/sp_01.jpg" alt="PC"  style="margin:auto;width:50%;height:50%;display:flex;">
     </div>
     <div class="carousel-item">
-      <img src="img/sp_04.jpg" alt="PC"  style="margin:auto;width:50%;heigt:50%;display:flex;">
+      <img src="img/sp_04.jpg" alt="PC"  style="margin:auto;width:50%;height:50%;display:flex;">
     </div>
      
   

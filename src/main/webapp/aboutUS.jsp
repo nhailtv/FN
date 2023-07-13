@@ -3,8 +3,8 @@
 <%@page import="Java.*"%>
 <%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%
+	pageEncoding="ISO-8859-1"%>
+<%
 User auth = (User) request.getSession().getAttribute("auth");
 if (auth != null) {
 	request.setAttribute("auth", auth);
@@ -19,19 +19,29 @@ if (cart_list != null) {
 	request.setAttribute("cart_list", cart_list);
 }
 %>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <%@include file="includes/Head.jsp"%>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About US</title>
 </head>
 <body>
 
-<!-- NavBar -->
+	<!-- NavBar -->
 	<nav class="navbar navbar-expand-lg bg-body-tertiary">
 		<div class="container">
 			<a class="navbar-brand" href="Index.jsp"> <img src="img/Logo.png"
@@ -46,9 +56,8 @@ if (cart_list != null) {
 			<div class="collapse navbar-collapse justify-content-between"
 				id="navbarSupportedContent">
 				<ul class="navbar-nav mx-auto">
-					<li class="nav-item"><a class="nav-link"
-						aria-current="page" href="Index.jsp"><i class="fas fa-home"></i>
-							Home</a></li>
+					<li class="nav-item"><a class="nav-link" aria-current="page"
+						href="Index.jsp"><i class="fas fa-home"></i> Home</a></li>
 					<%
 					if (auth != null) {
 						if (cart_list != null && cart_list.size() > 0) {
@@ -95,51 +104,63 @@ if (cart_list != null) {
 
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+	<script
+		src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
- <link rel="stylesheet" type="text/css" href="css/about.css">
+<link rel="stylesheet" type="text/css" href="css/about.css">
 </head>
 <body>
 
-<div class="about-section">
-  <h1>About Us Page</h1>
-  <p>Our team has 2 people: Thai Ba Bau and Nguyen Hong Nguyen Hai</p>
-  <p>This website is about to sell things!</p>
-</div>
+	<div class="about-section">
+		<h1>About Us Page</h1>
+		<!-- <p>Our team has 2 people: Thai Ba Bau and Nguyen Hong Nguyen Hai</p> -->
+		<p>This website is about to sell things!</p>
+	</div>
 
-<h2 style="text-align:center">Our Team</h2>
-<div class="row justify-content-center">
-  <div class="column">
-    <div class="card">
-      <img src="img/bau.jpg" alt="Bau">
-      <div class="container">
-        <h2>Thai Ba Bau</h2>
-        <p class="title">Web Desinger</p>
-        <p>We could do everything!</p>
-        <p>bautb.22it@vku.udn.com</p>
-        <p><a class="button" href="https://mail.google.com/mail/u/2/#inbox?compose=FZxzwjpgFcbRwftMrlxsJJsVddqXbBHxxfQGgHxtRzmbRMVgbJzbnRwczDFQlKsBjvKFvprLlzFdvHmkXhrSwSxlVpZdWQlzMBXzdwXWbkTzhshHmtZSjLhvBVVbDgHhzFVXCCTJlSkrrsPkljCXmGbrQhmTnnQgCVjHL" target="_blank">Contact</a></p>
-      </div>
-    </div>
-  </div>
-  
-  <div class="column">
-    <div class="card">
-      <img src="img/hai.jpg" alt="Hai">
-      <div class="container">
-        <h2>Nguyen Hong Nguyen Hai</h2>
-        <p class="title">Web designer</p>
-        <p>Nothing can stop me!</p>
-        <p>hainhn.22it@vku.udn.com</p>
-        <p><a class="button" href="https://mail.google.com/mail/u/2/#inbox?compose=GTvVlcSDbtnvqjjDSWfFvGwBKWJmphNZjllRpSLltBHkTcjKLxDnMKDMTSZZwqPsmxBnLnVtFvSNs" target="_blank">Contact</a>
-</p>
-      </div>
-    </div>
-  </div>
-</div>
+	<h2 style="text-align: center">Our Team</h2>
+	<div class="row justify-content-center">
+		<div class="column">
+			<div class="card">
+				<img src="img/bau.jpg" alt="Bau">
+				<div class="container">
+					<h2>Thai Ba Bau</h2>
+					<p class="title">Web Desinger</p>
+					<p>We could do everything!</p>
+					<p>bautb.22it@vku.udn.com</p>
+					<p>
+						<a class="button"
+							href="https://mail.google.com/mail/u/2/#inbox?compose=FZxzwjpgFcbRwftMrlxsJJsVddqXbBHxxfQGgHxtRzmbRMVgbJzbnRwczDFQlKsBjvKFvprLlzFdvHmkXhrSwSxlVpZdWQlzMBXzdwXWbkTzhshHmtZSjLhvBVVbDgHhzFVXCCTJlSkrrsPkljCXmGbrQhmTnnQgCVjHL"
+							target="_blank">Contact</a>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="column">
+			<div class="card">
+				<img src="mem-img/hai.jpg" alt="Hai">
+				<div class="container" style="border-radius: 30px ">
+					<h2>Nguyen Hong Nguyen Hai</h2>
+					<p class="title">Web designer</p>
+					<p>Nothing can stop me!</p>
+					<p>hainhn.22it@vku.udn.com</p>
+					<p>
+						<a class="button"
+							href="https://mail.google.com/mail/u/2/#inbox?compose=GTvVlcSDbtnvqjjDSWfFvGwBKWJmphNZjllRpSLltBHkTcjKLxDnMKDMTSZZwqPsmxBnLnVtFvSNs"
+							target="_blank">Contact</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		
+	</div>
 
 </body>
 </html>

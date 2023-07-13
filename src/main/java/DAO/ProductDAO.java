@@ -1,8 +1,7 @@
 package DAO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+
+import java.sql.*;
 import java.util.*;
 
 import Java.Cart;
@@ -10,7 +9,6 @@ import Java.Product;
 
 public class ProductDAO {
 	private Connection conn ;
-	private String Querry ;
 	private PreparedStatement prst;
 	private ResultSet rs;
 	
@@ -193,6 +191,21 @@ public class ProductDAO {
             e.printStackTrace();
         }
         return false;
+    }
+    
+    public List<String> getAllCategories() {
+        List<String> categories = new ArrayList<String>();
+        try {
+            prst = conn.prepareStatement("SELECT DISTINCT Category FROM product");
+            rs = prst.executeQuery();
+            while (rs.next()) {
+                String category = rs.getString("Category");
+                categories.add(category);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return categories;
     }
 
 }

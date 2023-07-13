@@ -81,21 +81,19 @@ if (cart_list != null) {
 			</div>
 		</div>
 	</nav>
-      <h1>Registration</h1>
+      
     <% 
     String notice = (String) request.getAttribute("notice");
     if (notice != null) {
     %>
-    <p style="color: red ; padding-left: 50%"><%= notice %></p>
+    <p style="color: red ; display: flex; justify-content: center; "><%= notice %></p>
     <% 
     }
     %>
-    <section class="vh-100">
+    <section class="vh-100" style="padding-top: 30px">
         <div class="container-fluid h-custom">
             <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-md-9 col-lg-6 col-xl-5">
-                    <img src="img/Logo.png" class="img-fluid logo-image" alt="Sample image">
-                </div>
+                
                 <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                     <form action="register-servlet" method="post">
 

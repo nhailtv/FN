@@ -25,7 +25,11 @@ if (cart_list != null) {
 %>
 <!DOCTYPE html>
 <html>
+
+
 <head>
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%@include file="includes/Head.jsp"%>
 

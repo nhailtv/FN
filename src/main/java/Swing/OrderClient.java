@@ -17,12 +17,23 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+
 import DAO.OrderDAO;
 import DAO.ProductDAO;
 import DAO.UserDAO;
 import Java.Order;
 import Java.Product;
 import Java.User;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
+
+
+
 
 public class OrderClient {
 
@@ -192,6 +203,7 @@ public class OrderClient {
                                 if (check1) {
                                     JOptionPane.showMessageDialog(frame, "Mark Done successfully");
                                     updateTable(ordersTable, orderDao);
+                           
                                 } else {
                                     JOptionPane.showMessageDialog(frame, "Something went wrong!");
                                     updateTable(ordersTable, orderDao);
@@ -214,6 +226,11 @@ public class OrderClient {
         frame.getContentPane().add(markDoneButton);
 
         JButton refreshButton = new JButton("Refresh!");
+        refreshButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		updateTable(ordersTable, orderDao);
+        	}
+        });
         refreshButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
         refreshButton.setBounds(25, 12, 238, 36);
         refreshButton.setBackground(new Color(63, 81, 181)); // Set button background color
@@ -260,4 +277,7 @@ public class OrderClient {
         // Set table row height
         ordersTable.setRowHeight(30);
     }
+
+
+    
 }

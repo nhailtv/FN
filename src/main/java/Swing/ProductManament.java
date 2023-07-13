@@ -130,34 +130,36 @@ public class ProductManament {
 		
 		updateButton = new JButton("Update Change");
 		updateButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				  int selectedRow = ProductsTable.getSelectedRow();
-	                if (selectedRow == -1) {
-	                    JOptionPane.showMessageDialog(frame, "Please select a row!");
-	                } else {
-	                    try {
-	                        DefaultTableModel model = (DefaultTableModel) ProductsTable.getModel();
-	                        Product product= new Product();
-	                        product.setName(model.getValueAt(selectedRow, 0).toString());
-	                        product.setCategory(model.getValueAt(selectedRow, 1).toString());
-	                        product.setPrice(Double.parseDouble(model.getValueAt(selectedRow, 2).toString()));
-	                        product.setImage(model.getValueAt(selectedRow, 3).toString());
-	                        product.setStock(Integer.parseInt( model.getValueAt(selectedRow, 4).toString()));
-	                        boolean check = pd.updateProduct(product);
-	                        if (check) {
-	                            JOptionPane.showMessageDialog(frame, "Update succeed");
-	                            updateTable(ProductsTable);
-	                          
-	                        } else {
-	                            JOptionPane.showMessageDialog(frame, "Something went wrong");
-	                            updateTable(ProductsTable);
-	                          
-	                        }
-	                    } catch (Exception e2) {
-	                        e2.printStackTrace();
-	                    }
-	                }
-			}
+		    public void actionPerformed(ActionEvent e) {
+		        int selectedRow = ProductsTable.getSelectedRow();
+		        if (selectedRow == -1) {
+		            JOptionPane.showMessageDialog(frame, "Please select a row!");
+		        } else {
+		            try {
+		                DefaultTableModel model = (DefaultTableModel) ProductsTable.getModel();
+		                String productName = model.getValueAt(selectedRow, 0).toString();
+		                String category = model.getValueAt(selectedRow, 1).toString();
+		                double price = Double.parseDouble(model.getValueAt(selectedRow, 2).toString());
+		                String image = model.getValueAt(selectedRow, 3).toString();
+		                int stock = Integer.parseInt(model.getValueAt(selectedRow, 4).toString());
+
+		                Product updatedProduct = new Product(productName, category, price, image, stock);
+		                boolean updateResult = pd.updateProduct(updatedProduct);
+
+		                if (updateResult) {
+		                    JOptionPane.showMessageDialog(frame, "Update succeeded!");
+		                    updateTable(ProductsTable);
+		                } else {
+		                    JOptionPane.showMessageDialog(frame, "Failed to update the product.");
+		                }
+		            } catch (NumberFormatException ex) {
+		                JOptionPane.showMessageDialog(frame, "Invalid price or stock value.");
+		            } catch (Exception ex) {
+		                ex.printStackTrace();
+		                JOptionPane.showMessageDialog(frame, "Something went wrong during the update process.");
+		            }
+		        }
+		    }
 		});
 		updateButton.setForeground(Color.BLACK);
 		updateButton.setFont(new Font("Tahoma", Font.PLAIN, 18));

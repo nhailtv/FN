@@ -187,6 +187,7 @@ if (cart_list != null) {
 		</div>
 	</div>
 
+<<<<<<< HEAD
 
 	<div id="demo" class="carousel slide" data-ride="carousel"
 		style="padding-top: 50px">
@@ -204,6 +205,54 @@ if (cart_list != null) {
 		<div class="carousel-inner">
 			<div class="carousel-item active">
 				<img src="img/c1.jpg" alt="PC">
+=======
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active bg-dark"></li>
+    <li data-target="#demo" data-slide-to="1" class="bg-dark"></li>
+    <li data-target="#demo" data-slide-to="2" class="bg-dark"></li>
+    <li data-target="#demo" data-slide-to="3" class="bg-dark"></li>
+    
+  </ul>
+  
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="img/sp_03.jpg" alt="PC" style="margin:auto;width:50%;height:50%;display:flex;" >
+    </div>
+    <div class="carousel-item">
+      <img src="img/sp_02.jpg" alt="PC"  style="margin:auto;width:50%;height:50%;display:flex;">
+    </div>
+    <div class="carousel-item">
+      <img src="img/sp_01.jpg" alt="PC"  style="margin:auto;width:50%;height:50%;display:flex;">
+    </div>
+    <div class="carousel-item">
+      <img src="img/sp_04.jpg" alt="PC"  style="margin:auto;width:50%;height:50%;display:flex;">
+    </div>
+     
+  
+  </div>
+  
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon bg-dark"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon bg-dark"></span>
+  </a>
+</div>
+	
+	
+	
+	<div class="container">
+		<form action="search-servlet" method="get" class="my-3">
+			<div class="input-group">
+				<input type="text" name="search" class="form-control"
+					placeholder="Search" style="width: 50%">
+				<button class="btn btn-primary" type="submit">
+					<i class="fas fa-search"></i>
+				</button>
+>>>>>>> 36e82f45d34a1559ba0de84fd64be2fcd6568f88
 			</div>
 			<div class="carousel-item">
 				<img src="img/c2.jpg" alt="PC">

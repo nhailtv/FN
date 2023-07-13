@@ -124,6 +124,7 @@ if (cart_list != null) {
 		<p>This website is about to sell things!</p>
 	</div>
 
+<<<<<<< HEAD
 	<h2 style="text-align: center">Our Team</h2>
 	<div class="row justify-content-center">
 		<div class="column">
@@ -161,6 +162,37 @@ if (cart_list != null) {
 		</div>
 		
 	</div>
+=======
+<h2 style="text-align:center">Our Team</h2>
+<div class="row justify-content-center">
+  <div class="column">
+    <div class="card">
+      <img src="img/em_Beo.jpg" alt="Bau">
+      <div class="container">
+        <h2>Tran Quoc Bao</h2>
+        <p class="title">Web Desinger</p>
+        <p>We could do everything!</p>
+        <p>baotq.22it@vku.udn.com</p>
+        <p><a class="button" href="https://mail.google.com/mail/u/2/#inbox?compose=FZxzwjpgFcbRwftMrlxsJJsVddqXbBHxxfQGgHxtRzmbRMVgbJzbnRwczDFQlKsBjvKFvprLlzFdvHmkXhrSwSxlVpZdWQlzMBXzdwXWbkTzhshHmtZSjLhvBVVbDgHhzFVXCCTJlSkrrsPkljCXmGbrQhmTnnQgCVjHL" target="_blank">Contact</a></p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="column">
+    <div class="card">
+      <img src="img/hai.jpg" alt="Hai">
+      <div class="container">
+        <h2>Nguyen Hong Nguyen Hai</h2>
+        <p class="title">Web designer</p>
+        <p>Nothing can stop me!</p>
+        <p>hainhn.22it@vku.udn.com</p>
+        <p><a class="button" href="https://mail.google.com/mail/u/2/#inbox?compose=GTvVlcSDbtnvqjjDSWfFvGwBKWJmphNZjllRpSLltBHkTcjKLxDnMKDMTSZZwqPsmxBnLnVtFvSNs" target="_blank">Contact</a>
+</p>
+      </div>
+    </div>
+  </div>
+</div>
+>>>>>>> 36e82f45d34a1559ba0de84fd64be2fcd6568f88
 
 </body>
 </html>

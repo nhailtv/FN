@@ -206,7 +206,7 @@ if (cart_list != null) {
 				<div class="col">
 					<h5>WEB-Maker:</h5>
 					<ul class="list-unstyled">
-						<li>Thai Ba Bau</li>
+						<li>Tran Quoc Bao</li>
 						<li>Nguyen Hong Nguyen Hai</li>
 					</ul>
 				</div>

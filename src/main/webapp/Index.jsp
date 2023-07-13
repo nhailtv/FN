@@ -148,16 +148,16 @@ if (cart_list != null) {
   <!-- The slideshow -->
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="img/Dyno75-V2.png" alt="PC" style="margin:auto;width:20%;heigt:25%;display:flex;" >
+      <img src="img/sp_03.jpg" alt="PC" style="margin:auto;width:50%;heigt:50%;display:flex;" >
     </div>
     <div class="carousel-item">
-      <img src="img/c2.jpg" alt="PC"  style="margin:auto;width:15%;heigt:25%;display:flex;">
+      <img src="img/sp_02.jpg" alt="PC"  style="margin:auto;width:50%;heigt:50%;display:flex;">
     </div>
     <div class="carousel-item">
-      <img src="img/c3.jpg" alt="PC"  style="margin:auto;width:13%;heigt:15%;display:flex;">
+      <img src="img/sp_01.jpg" alt="PC"  style="margin:auto;width:50%;heigt:50%;display:flex;">
     </div>
     <div class="carousel-item">
-      <img src="img/c4.jpg" alt="PC"  style="margin:auto;width:15%;heigt:15%;display:flex;">
+      <img src="img/sp_04.jpg" alt="PC"  style="margin:auto;width:50%;heigt:50%;display:flex;">
     </div>
      
   
@@ -284,7 +284,7 @@ if (cart_list != null) {
 				<div class="col">
 					<h5>WEB-Maker:</h5>
 					<ul class="list-unstyled">
-						<li>Thai Ba Bau</li>
+						<li>Tran Quoc Bao</li>
 						<li>Nguyen Hong Nguyen Hai</li>
 					</ul>
 				</div>

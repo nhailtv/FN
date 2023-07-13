@@ -115,12 +115,12 @@ if (cart_list != null) {
 <div class="row justify-content-center">
   <div class="column">
     <div class="card">
-      <img src="img/bau.jpg" alt="Bau">
+      <img src="img/em_Beo.jpg" alt="Bau">
       <div class="container">
-        <h2>Thai Ba Bau</h2>
+        <h2>Tran Quoc Bao</h2>
         <p class="title">Web Desinger</p>
         <p>We could do everything!</p>
-        <p>bautb.22it@vku.udn.com</p>
+        <p>baotq.22it@vku.udn.com</p>
         <p><a class="button" href="https://mail.google.com/mail/u/2/#inbox?compose=FZxzwjpgFcbRwftMrlxsJJsVddqXbBHxxfQGgHxtRzmbRMVgbJzbnRwczDFQlKsBjvKFvprLlzFdvHmkXhrSwSxlVpZdWQlzMBXzdwXWbkTzhshHmtZSjLhvBVVbDgHhzFVXCCTJlSkrrsPkljCXmGbrQhmTnnQgCVjHL" target="_blank">Contact</a></p>
       </div>
     </div>
